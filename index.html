@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -564,6 +565,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- AUTH SECTION -->
@@ -600,11 +602,7 @@
             <div class="add-habit-section">
                 <div class="form-title">Dodaj nowy nawyk</div>
                 <div class="form-group">
-                    <input 
-                        type="text" 
-                        id="habitInput" 
-                        placeholder="np. Ćwiczenia, Picie wody, Czytanie..."
-                    >
+                    <input type="text" id="habitInput" placeholder="np. Ćwiczenia, Picie wody, Czytanie...">
                     <select id="colorSelect">
                         <option value="blue">Niebieski</option>
                         <option value="green">Zielony</option>
@@ -629,20 +627,22 @@
     <script type="module">
         // Import Firebase functions
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-        import { 
-            getAuth, 
-            createUserWithEmailAndPassword, 
-            signInWithEmailAndPassword, 
-            signOut, 
-            onAuthStateChanged 
+        import
+        {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged
         } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
-        import { 
-            getFirestore, 
-            collection, 
-            doc, 
-            onSnapshot, 
-            setDoc, 
-            deleteDoc 
+        import
+        {
+            getFirestore,
+            collection,
+            doc,
+            onSnapshot,
+            setDoc,
+            deleteDoc
         } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
 
         // Firebase configuration
@@ -672,17 +672,20 @@
         // ============================================
         // AUTH FUNCTIONS
         // ============================================
-        window.toggleAuthMode = function() {
+        window.toggleAuthMode = function ()
+        {
             isLoginMode = !isLoginMode;
             const title = document.getElementById('authTitle');
             const btn = document.getElementById('authBtn');
             const toggleText = document.getElementById('authToggleText');
 
-            if (isLoginMode) {
+            if (isLoginMode)
+            {
                 title.textContent = '📊 Zaloguj się';
                 btn.textContent = 'Zaloguj się';
                 toggleText.textContent = 'Nie masz konta? ';
-            } else {
+            } else
+            {
                 title.textContent = '📊 Zarejestruj się';
                 btn.textContent = 'Zarejestruj się';
                 toggleText.textContent = 'Masz już konto? ';
@@ -690,30 +693,37 @@
             clearErrors();
         };
 
-        window.handleAuth = async function() {
+        window.handleAuth = async function ()
+        {
             const email = document.getElementById('authEmail').value.trim();
             const password = document.getElementById('authPassword').value.trim();
 
-            if (!email || !password) {
+            if (!email || !password)
+            {
                 showError('Wpisz email i hasło');
                 return;
             }
 
             showLoading('Ładowanie...');
 
-            try {
-                if (isLoginMode) {
+            try
+            {
+                if (isLoginMode)
+                {
                     await signInWithEmailAndPassword(auth, email, password);
-                } else {
+                } else
+                {
                     await createUserWithEmailAndPassword(auth, email, password);
                 }
                 clearErrors();
-            } catch (error) {
+            } catch (error)
+            {
                 showError(getErrorMessage(error.code));
             }
         };
 
-        function getErrorMessage(code) {
+        function getErrorMessage(code)
+        {
             const errors = {
                 'auth/email-already-in-use': 'Ten email jest już zarejestrowany',
                 'auth/weak-password': 'Hasło musi mieć co najmniej 6 znaków',
@@ -724,30 +734,36 @@
             return errors[code] || 'Błąd: ' + code;
         }
 
-        function showError(message) {
+        function showError(message)
+        {
             document.getElementById('errorMessage').textContent = '❌ ' + message;
             document.getElementById('loadingMessage').textContent = '';
         }
 
-        function showLoading(message) {
+        function showLoading(message)
+        {
             document.getElementById('loadingMessage').textContent = '⏳ ' + message;
             document.getElementById('errorMessage').textContent = '';
         }
 
-        function clearErrors() {
+        function clearErrors()
+        {
             document.getElementById('errorMessage').textContent = '';
             document.getElementById('loadingMessage').textContent = '';
         }
 
-        window.handleLogout = async function() {
+        window.handleLogout = async function ()
+        {
             await signOut(auth);
         };
 
         // ============================================
         // AUTH STATE MONITORING
         // ============================================
-        onAuthStateChanged(auth, user => {
-            if (user) {
+        onAuthStateChanged(auth, user =>
+        {
+            if (user)
+            {
                 currentUser = user;
                 document.getElementById('authSection').style.display = 'none';
                 document.getElementById('appSection').classList.add('active');
@@ -755,7 +771,8 @@
 
                 // Załaduj nawyki z Firestore
                 loadHabitsFromFirestore();
-            } else {
+            } else
+            {
                 currentUser = null;
                 document.getElementById('authSection').style.display = 'block';
                 document.getElementById('appSection').classList.remove('active');
@@ -768,14 +785,17 @@
         // ============================================
         // FIRESTORE FUNCTIONS
         // ============================================
-        function loadHabitsFromFirestore() {
+        function loadHabitsFromFirestore()
+        {
             if (!currentUser) return;
 
             unsubscribe = onSnapshot(
                 collection(db, 'users', currentUser.uid, 'habits'),
-                snapshot => {
+                snapshot =>
+                {
                     habits = [];
-                    snapshot.forEach(docSnap => {
+                    snapshot.forEach(docSnap =>
+                    {
                         habits.push({
                             id: docSnap.id,
                             ...docSnap.data()
@@ -786,7 +806,8 @@
             );
         }
 
-        function saveHabitToFirestore(habit) {
+        function saveHabitToFirestore(habit)
+        {
             if (!currentUser) return;
 
             setDoc(
@@ -796,7 +817,8 @@
             );
         }
 
-        function deleteHabitFromFirestore(habitId) {
+        function deleteHabitFromFirestore(habitId)
+        {
             if (!currentUser) return;
 
             deleteDoc(
@@ -807,7 +829,8 @@
         // ============================================
         // HABIT FUNCTIONS
         // ============================================
-        window.addHabit = function() {
+        window.addHabit = function ()
+        {
             const input = document.getElementById('habitInput');
             const color = document.getElementById('colorSelect').value;
             const name = input.value.trim();
@@ -828,7 +851,8 @@
             input.value = '';
         };
 
-        window.deleteHabit = function(habitId) {
+        window.deleteHabit = function (habitId)
+        {
             if (!confirm('Czy na pewno chcesz usunąć ten nawyk?')) return;
 
             habits = habits.filter(h => h.id !== habitId);
@@ -836,14 +860,17 @@
             renderHabits();
         };
 
-        window.toggleDay = function(habitId, dateStr) {
+        window.toggleDay = function (habitId, dateStr)
+        {
             const habit = habits.find(h => h.id === habitId);
             if (!habit) return;
 
             const index = habit.completedDates.indexOf(dateStr);
-            if (index > -1) {
+            if (index > -1)
+            {
                 habit.completedDates.splice(index, 1);
-            } else {
+            } else
+            {
                 habit.completedDates.push(dateStr);
             }
 
@@ -851,14 +878,16 @@
             renderHabits();
         };
 
-        window.toggleStage = function(element) {
+        window.toggleStage = function (element)
+        {
             element.classList.toggle('collapsed');
         };
 
         // ============================================
         // STATISTICS FUNCTIONS
         // ============================================
-        function getStreak(habitId) {
+        function getStreak(habitId)
+        {
             const habit = habits.find(h => h.id === habitId);
             if (!habit || habit.completedDates.length === 0) return 0;
 
@@ -867,14 +896,18 @@
             let current = new Date();
             current.setHours(0, 0, 0, 0);
 
-            for (let i = 0; i < 365; i++) {
+            for (let i = 0; i < 365; i++)
+            {
                 const dateStr = current.toISOString().split('T')[0];
-                if (sorted.includes(dateStr)) {
+                if (sorted.includes(dateStr))
+                {
                     streak++;
                     current.setDate(current.getDate() - 1);
-                } else if (i === 0) {
+                } else if (i === 0)
+                {
                     break;
-                } else {
+                } else
+                {
                     break;
                 }
             }
@@ -882,7 +915,8 @@
             return streak;
         }
 
-        function getCompletionRate(habitId) {
+        function getCompletionRate(habitId)
+        {
             const habit = habits.find(h => h.id === habitId);
             if (!habit) return 0;
 
@@ -893,32 +927,39 @@
             return Math.round((habit.completedDates.length / daysSince) * 100);
         }
 
-        function getStageProgress(habitId, stageDays) {
+        function getStageProgress(habitId, stageDays)
+        {
             const habit = habits.find(h => h.id === habitId);
             if (!habit || !stageDays || stageDays.length === 0) return 0;
 
-            const completedDays = stageDays.filter(day => 
+            const completedDays = stageDays.filter(day =>
                 habit.completedDates.includes(day)
             ).length;
 
             return Math.round((completedDays / stageDays.length) * 100);
         }
 
-        function getLast12Weeks() {
-            const weeks = [];
-            for (let i = 83; i >= 0; i--) {
-                const date = new Date();
-                date.setDate(date.getDate() - i);
-                date.setHours(0, 0, 0, 0);
-                weeks.push(date.toISOString().split('T')[0]);
+        function getDaysSinceCreation(createdAt)
+        {
+            const days = [];
+            const created = new Date(createdAt);
+            created.setHours(0, 0, 0, 0);
+
+            // Generuj 84 dni (12 tygodni) od daty utworzenia
+            for (let i = 0; i < 84; i++)
+            {
+                const date = new Date(created);
+                date.setDate(created.getDate() + i);
+                days.push(date.toISOString().split('T')[0]);
             }
-            return weeks;
+            return days;
         }
 
         // ============================================
         // COLOR MAPPING
         // ============================================
-        function getColorCode(color) {
+        function getColorCode(color)
+        {
             const colors = {
                 blue: '#3b82f6',
                 green: '#10b981',
@@ -933,22 +974,25 @@
         // ============================================
         // RENDER FUNCTION
         // ============================================
-        function renderHabits() {
+        function renderHabits()
+        {
             const list = document.getElementById('habitsList');
 
-            if (habits.length === 0) {
+            if (habits.length === 0)
+            {
                 list.innerHTML = '<div class="empty-state">Brak nawyków. Dodaj pierwszy! 🎯</div>';
                 return;
             }
 
-            const allDays = getLast12Weeks();
             const today = new Date().toISOString().split('T')[0];
 
-            const stage1 = allDays.slice(0, 28);
-            const stage2 = allDays.slice(28, 56);
-            const stage3 = allDays.slice(56, 84);
+            list.innerHTML = habits.map(habit => {
+                const allDays = getDaysSinceCreation(habit.createdAt);
+                const stage1 = allDays.slice(0, 28);
+                const stage2 = allDays.slice(28, 56);
+                const stage3 = allDays.slice(56, 84);
 
-            list.innerHTML = habits.map(habit => `
+                return `
                 <div class="habit-card">
                     <div class="habit-header">
                         <div class="habit-title">
@@ -984,7 +1028,7 @@
                             <div class="stage-content">
                                 <div class="calendar">
                                     ${stage1.map(dateStr => `
-                                        <button 
+                                        <button
                                             class="day-btn ${habit.completedDates.includes(dateStr) ? 'completed ' + habit.color : ''} ${dateStr === today ? 'today' : ''}"
                                             onclick="event.stopPropagation(); window.toggleDay(${habit.id}, '${dateStr}')"
                                             title="${new Date(dateStr).toLocaleDateString('pl-PL')}"
@@ -1008,7 +1052,7 @@
                             <div class="stage-content">
                                 <div class="calendar">
                                     ${stage2.map(dateStr => `
-                                        <button 
+                                        <button
                                             class="day-btn ${habit.completedDates.includes(dateStr) ? 'completed ' + habit.color : ''} ${dateStr === today ? 'today' : ''}"
                                             onclick="event.stopPropagation(); window.toggleDay(${habit.id}, '${dateStr}')"
                                             title="${new Date(dateStr).toLocaleDateString('pl-PL')}"
@@ -1032,7 +1076,7 @@
                             <div class="stage-content">
                                 <div class="calendar">
                                     ${stage3.map(dateStr => `
-                                        <button 
+                                        <button
                                             class="day-btn ${habit.completedDates.includes(dateStr) ? 'completed ' + habit.color : ''} ${dateStr === today ? 'today' : ''}"
                                             onclick="event.stopPropagation(); window.toggleDay(${habit.id}, '${dateStr}')"
                                             title="${new Date(dateStr).toLocaleDateString('pl-PL')}"
@@ -1047,25 +1091,31 @@
                         Stworzono: ${new Date(habit.createdAt).toLocaleDateString('pl-PL')}
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         // ============================================
         // Event Listeners
         // ============================================
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('habitInput').addEventListener('keypress', (e) => {
+        document.addEventListener('DOMContentLoaded', () =>
+        {
+            document.getElementById('habitInput').addEventListener('keypress', (e) =>
+            {
                 if (e.key === 'Enter') window.addHabit();
             });
 
-            document.getElementById('authEmail').addEventListener('keypress', (e) => {
+            document.getElementById('authEmail').addEventListener('keypress', (e) =>
+            {
                 if (e.key === 'Enter') window.handleAuth();
             });
 
-            document.getElementById('authPassword').addEventListener('keypress', (e) => {
+            document.getElementById('authPassword').addEventListener('keypress', (e) =>
+            {
                 if (e.key === 'Enter') window.handleAuth();
             });
         });
     </script>
 </body>
+
 </html>
