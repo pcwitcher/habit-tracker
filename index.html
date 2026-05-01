@@ -549,7 +549,7 @@
             width: 32px;
             text-align: center;
             font-size: 0.65em;
-            color: #475569;
+            color: #94a3b8;
             font-weight: 600;
             padding: 2px 0;
         }
@@ -595,6 +595,12 @@
         }
 
         .day-btn.past {
+            opacity: 0.25;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .day-btn.future {
             opacity: 0.25;
             cursor: not-allowed;
             pointer-events: none;
@@ -1208,7 +1214,9 @@
         window.toggleDay = function(habitId, dateStr) {
             const habit = habits.find(h => h.id === habitId);
             if (!habit) return;
-            if (dateStr < localDateStr(new Date())) return;
+            const todayStr = localDateStr(new Date());
+            if (dateStr < todayStr) return;
+            if (dateStr > todayStr) return;
             if (!isScheduledDay(dateStr, habit)) return;
 
             const index = habit.completedDates.indexOf(dateStr);
@@ -1409,7 +1417,7 @@
                         ${slots.map(dateStr => dateStr === null
                             ? `<div style="width:32px;height:32px"></div>`
                             : `<button
-                                class="day-btn ${habit.completedDates.includes(dateStr) ? 'completed ' + habit.color : ''} ${dateStr === today ? 'today' : ''} ${dateStr < today ? 'past' : ''} ${!isScheduledDay(dateStr, habit) ? 'unscheduled' : ''}"
+                                class="day-btn ${habit.completedDates.includes(dateStr) ? 'completed ' + habit.color : ''} ${dateStr === today ? 'today' : ''} ${dateStr < today ? 'past' : ''} ${dateStr > today ? 'future' : ''} ${!isScheduledDay(dateStr, habit) ? 'unscheduled' : ''}"
                                 onclick="event.stopPropagation(); window.toggleDay(${habit.id}, '${dateStr}')"
                                 title="${new Date(dateStr + 'T12:00:00').toLocaleDateString('pl-PL')}"
                                ></button>`
