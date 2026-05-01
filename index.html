@@ -24,19 +24,40 @@
             margin: 0 auto;
         }
 
-        /* AUTH SECTION */
+        /* ── AUTH SECTION ── */
         .auth-section {
             background: #1e293b;
             border: 1px solid #334155;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 40px 20px;
             margin-bottom: 40px;
             text-align: center;
         }
 
+        .auth-logo {
+            font-size: 3.5em;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .auth-brand-title {
+            font-size: 1.9em;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 4px;
+        }
+
+        .auth-brand-subtitle {
+            color: #64748b;
+            font-size: 0.9em;
+            margin-bottom: 28px;
+        }
+
         .auth-section h2 {
             margin-bottom: 20px;
-            font-size: 1.5em;
+            font-size: 1.2em;
+            color: #94a3b8;
+            font-weight: 500;
         }
 
         .auth-form {
@@ -54,6 +75,7 @@
             background: #0f172a;
             color: #e2e8f0;
             font-size: 1em;
+            width: 100%;
         }
 
         .auth-form input:focus {
@@ -62,7 +84,39 @@
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
-        .auth-form button {
+        /* Password wrapper */
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-wrapper input {
+            padding-right: 44px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            background: none !important;
+            border: none !important;
+            color: #64748b;
+            cursor: pointer;
+            padding: 4px;
+            min-width: auto !important;
+            font-size: 1.1em;
+            line-height: 1;
+            transition: color 0.2s;
+            transform: none !important;
+        }
+
+        .password-toggle:hover {
+            color: #94a3b8;
+            background: none !important;
+            transform: none !important;
+        }
+
+        .auth-form #authBtn {
             padding: 12px;
             background: #3b82f6;
             color: white;
@@ -72,9 +126,11 @@
             cursor: pointer;
             transition: background 0.2s;
             font-size: 1em;
+            width: 100%;
+            min-width: auto;
         }
 
-        .auth-form button:hover {
+        .auth-form #authBtn:hover {
             background: #2563eb;
         }
 
@@ -85,32 +141,34 @@
         }
 
         .auth-toggle button {
-            background: none;
-            color: #3b82f6;
+            background: none !important;
+            color: #3b82f6 !important;
             cursor: pointer;
-            border: none;
-            padding: 0;
+            border: none !important;
+            padding: 0 !important;
             text-decoration: underline;
             font-weight: 600;
+            min-width: auto !important;
+            font-size: inherit;
         }
 
         .auth-toggle button:hover {
-            color: #2563eb;
+            color: #2563eb !important;
         }
 
         .error-message {
             color: #ef4444;
             font-size: 0.9em;
-            margin-top: 8px;
+            margin-top: 4px;
         }
 
         .loading {
             color: #94a3b8;
             font-size: 0.9em;
-            margin-top: 8px;
+            margin-top: 4px;
         }
 
-        /* APP SECTION */
+        /* ── APP SECTION ── */
         .app-section {
             display: none;
         }
@@ -123,7 +181,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #0f172a;
+            padding: 14px 0;
+            border-bottom: 1px solid #1e293b;
         }
 
         header h1 {
@@ -147,21 +211,22 @@
         }
 
         .logout-btn {
-            padding: 8px 12px;
-            background: #ef4444;
-            color: white;
-            border: none;
-            border-radius: 6px;
+            padding: 8px 12px !important;
+            background: #ef4444 !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 6px !important;
             cursor: pointer;
             font-size: 0.9em;
             font-weight: 600;
+            min-width: auto !important;
         }
 
         .logout-btn:hover {
-            background: #dc2626;
+            background: #dc2626 !important;
         }
 
-        /* Form */
+        /* ── ADD HABIT FORM ── */
         .add-habit-section {
             background: #1e293b;
             border: 1px solid #334155;
@@ -181,11 +246,10 @@
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 16px;
+            align-items: center;
         }
 
-        input[type="text"],
-        select {
+        input[type="text"] {
             padding: 10px 14px;
             border: 1px solid #475569;
             border-radius: 8px;
@@ -200,15 +264,63 @@
             color: #64748b;
         }
 
-        input[type="text"]:focus,
+        select {
+            padding: 10px 14px;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            background: #0f172a;
+            color: #e2e8f0;
+            font-size: 1em;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
         select:focus {
             outline: none;
             border-color: #3b82f6;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
-        select {
-            flex: 0 1 auto;
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Color picker swatches */
+        .color-picker {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            padding: 8px 12px;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .color-option input[type="radio"] {
+            display: none;
+        }
+
+        .color-swatch {
+            display: block;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.2);
+        }
+
+        .color-option input[type="radio"]:checked + .color-swatch {
+            border-color: #fff;
+            transform: scale(1.25);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
         }
 
         button {
@@ -219,7 +331,7 @@
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.1s;
             font-size: 1em;
             min-width: 120px;
         }
@@ -232,7 +344,7 @@
             transform: scale(0.98);
         }
 
-        /* Habits List */
+        /* ── HABITS LIST ── */
         .habits-list {
             display: flex;
             flex-direction: column;
@@ -242,14 +354,16 @@
         .habit-card {
             background: #1e293b;
             border: 1px solid #334155;
+            border-left-width: 4px;
             border-radius: 12px;
             padding: 24px;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s;
             overflow-x: auto;
         }
 
         .habit-card:hover {
             border-color: #475569;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
         }
 
         .habit-header {
@@ -277,41 +391,52 @@
         }
 
         .delete-btn {
-            background: #ef4444;
-            padding: 8px 12px;
-            font-size: 0.9em;
-            min-width: auto;
+            background: transparent !important;
+            border: 1px solid #ef4444 !important;
+            color: #ef4444 !important;
+            padding: 6px 12px !important;
+            font-size: 0.85em;
+            min-width: auto !important;
+            border-radius: 6px;
+            transition: all 0.2s !important;
         }
 
         .delete-btn:hover {
-            background: #dc2626;
+            background: #ef4444 !important;
+            color: white !important;
         }
 
+        /* Stats badges */
         .stats {
             display: flex;
-            gap: 24px;
+            flex-wrap: wrap;
+            gap: 8px;
             margin-bottom: 16px;
-            font-size: 0.95em;
         }
 
-        .stat {
-            color: #cbd5e1;
+        .stat-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 5px 11px;
+            font-size: 0.86em;
+            color: #94a3b8;
+            white-space: nowrap;
         }
 
         .stat-value {
             font-weight: 700;
-            margin-left: 4px;
         }
 
-        .stat-streak {
-            color: #fbbf24;
-        }
+        .stat-streak      { color: #fbbf24; }
+        .stat-best-streak { color: #fb923c; }
+        .stat-rate        { color: #4ade80; }
+        .stat-count       { color: #60a5fa; }
 
-        .stat-rate {
-            color: #4ade80;
-        }
-
-        /* Stages */
+        /* ── STAGES ── */
         .stages-container {
             display: flex;
             flex-direction: column;
@@ -326,17 +451,9 @@
             overflow: hidden;
         }
 
-        .stage.stage1 {
-            border-left-color: #3b82f6;
-        }
-
-        .stage.stage2 {
-            border-left-color: #10b981;
-        }
-
-        .stage.stage3 {
-            border-left-color: #a855f7;
-        }
+        .stage.stage1 { border-left-color: #3b82f6; }
+        .stage.stage2 { border-left-color: #10b981; }
+        .stage.stage3 { border-left-color: #a855f7; }
 
         .stage-header {
             display: flex;
@@ -388,22 +505,13 @@
 
         .stage-progress-fill {
             height: 100%;
-            background: #3b82f6;
             transition: width 0.3s;
             border-radius: 4px;
         }
 
-        .stage1 .stage-progress-fill {
-            background: #3b82f6;
-        }
-
-        .stage2 .stage-progress-fill {
-            background: #10b981;
-        }
-
-        .stage3 .stage-progress-fill {
-            background: #a855f7;
-        }
+        .stage1 .stage-progress-fill { background: #3b82f6; }
+        .stage2 .stage-progress-fill { background: #10b981; }
+        .stage3 .stage-progress-fill { background: #a855f7; }
 
         .stage-progress-text {
             font-size: 0.75em;
@@ -425,71 +533,250 @@
             padding: 0 12px;
         }
 
+        /* ── CALENDAR ── */
+        .calendar-wrapper {
+            overflow-x: auto;
+        }
+
+        .week-labels {
+            display: grid;
+            grid-template-columns: repeat(7, 32px);
+            gap: 1px;
+            margin-bottom: 4px;
+        }
+
+        .week-label {
+            width: 32px;
+            text-align: center;
+            font-size: 0.65em;
+            color: #475569;
+            font-weight: 600;
+            padding: 2px 0;
+        }
+
         .calendar {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
+            grid-template-columns: repeat(7, 32px);
             gap: 1px;
-            margin-bottom: 0;
         }
 
         .day-btn {
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border: 1px solid #475569;
-            border-radius: 3px;
+            border-radius: 4px;
             background: #0f172a;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.15s;
             position: relative;
             font-size: 0;
             padding: 0;
-            min-width: 30px;
+            min-width: 32px;
         }
 
         .day-btn:hover {
             background: #1e293b;
-            border-color: #64748b;
+            border-color: #94a3b8;
+            transform: scale(1.18);
+            z-index: 1;
         }
 
-        .day-btn.completed {
-            border-color: #64748b;
-        }
-
-        .day-btn.completed.blue {
-            background: #3b82f6;
-        }
-
-        .day-btn.completed.green {
-            background: #10b981;
-        }
-
-        .day-btn.completed.purple {
-            background: #a855f7;
-        }
-
-        .day-btn.completed.red {
-            background: #ef4444;
-        }
-
-        .day-btn.completed.yellow {
-            background: #eab308;
-        }
-
-        .day-btn.completed.pink {
-            background: #ec4899;
-        }
+        .day-btn.completed { border-color: transparent; }
+        .day-btn.completed.blue   { background: #3b82f6; }
+        .day-btn.completed.green  { background: #10b981; }
+        .day-btn.completed.purple { background: #a855f7; }
+        .day-btn.completed.red    { background: #ef4444; }
+        .day-btn.completed.yellow { background: #eab308; }
+        .day-btn.completed.pink   { background: #ec4899; }
 
         .day-btn.today {
-            outline: 2px solid #64748b;
+            outline: 2px solid #ffffff;
             outline-offset: 2px;
+        }
+
+        .day-btn.past {
+            opacity: 0.25;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .day-btn.unscheduled {
+            opacity: 0.12;
+            cursor: default;
+            pointer-events: none;
+            border-style: dashed;
         }
 
         .habit-date {
             color: #64748b;
             font-size: 0.85em;
+            margin-top: 4px;
         }
 
-        /* Empty State */
+        /* ── MEDALS ── */
+        .medals-section {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #1e293b;
+        }
+
+        .medals-title {
+            font-size: 0.78em;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .medals-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .medal {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid #334155;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.82em;
+            color: #cbd5e1;
+            animation: medal-pop 0.4s ease;
+        }
+
+        .medal-icon { font-size: 1.2em; }
+
+        @keyframes medal-pop {
+            0%   { transform: scale(0.5); opacity: 0; }
+            70%  { transform: scale(1.1); }
+            100% { transform: scale(1);   opacity: 1; }
+        }
+
+        .cycle-label {
+            font-size: 0.78em;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        /* ── INFO PANEL ── */
+        .info-panel {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .info-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .info-panel-header:hover {
+            background: #243044;
+        }
+
+        .info-panel-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95em;
+            font-weight: 600;
+            color: #94a3b8;
+        }
+
+        .info-panel-arrow {
+            color: #475569;
+            font-size: 0.85em;
+            transition: transform 0.25s;
+        }
+
+        .info-panel.open .info-panel-arrow {
+            transform: rotate(180deg);
+        }
+
+        .info-panel-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            padding: 0 20px;
+        }
+
+        .info-panel.open .info-panel-body {
+            max-height: 600px;
+            padding: 0 20px 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .info-card {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px solid #334155;
+        }
+
+        .info-card-title {
+            font-size: 0.8em;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .info-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-card li {
+            font-size: 0.88em;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .info-medals-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .info-medal-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 0.85em;
+            color: #cbd5e1;
+        }
+
+        @media (max-width: 600px) {
+            .info-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── EMPTY STATE ── */
         .empty-state {
             background: #1e293b;
             border: 1px solid #334155;
@@ -500,7 +787,7 @@
             font-size: 1.1em;
         }
 
-        /* Footer */
+        /* ── FOOTER ── */
         footer {
             margin-top: 40px;
             text-align: center;
@@ -509,9 +796,7 @@
         }
 
         @media (max-width: 600px) {
-            h1 {
-                font-size: 1.8em;
-            }
+            header h1 { font-size: 1.8em; }
 
             header {
                 flex-direction: column;
@@ -519,59 +804,63 @@
                 margin-bottom: 20px;
             }
 
-            .form-group {
-                flex-direction: column;
+            .add-habit-section { margin-top: 30px; }
+
+            .habit-header { flex-direction: column; gap: 8px; }
+
+            .delete-btn {
+                align-self: flex-end;
+                font-size: 0.8em !important;
+                padding: 4px 10px !important;
             }
 
-            input[type="text"],
-            select,
-            button {
-                width: 100%;
-            }
+            .form-group { flex-direction: column; }
 
-            .stats {
-                flex-direction: column;
-                gap: 12px;
-            }
+            input[type="text"], button { width: 100%; }
 
+            .stats { gap: 6px; }
+
+            .week-labels,
             .calendar {
-                grid-template-columns: repeat(7, 1fr);
-                gap: 1px;
+                grid-template-columns: repeat(7, 26px);
             }
+
+            .week-label { width: 26px; font-size: 0.6em; }
 
             .day-btn {
-                width: 20px;
-                height: 20px;
-                min-width: 20px;
+                width: 26px;
+                height: 26px;
+                min-width: 26px;
             }
 
-            .stage-title {
-                font-size: 0.85em;
-            }
-
-            .stage-header {
-                padding: 8px 10px;
-            }
-
-            .stage-progress-bar {
-                min-width: 60px;
-            }
-
-            .stage-progress-text {
-                min-width: 30px;
-                font-size: 0.7em;
-            }
+            .stage-title { font-size: 0.85em; }
+            .stage-header { padding: 8px 10px; }
+            .stage-progress-bar { min-width: 60px; }
+            .stage-progress-text { min-width: 30px; font-size: 0.7em; }
         }
     </style>
 </head>
 <body>
     <div class="container">
+
         <!-- AUTH SECTION -->
         <div class="auth-section" id="authSection">
-            <h2 id="authTitle">📊 Zaloguj się</h2>
+            <span class="auth-logo">📊</span>
+            <div class="auth-brand-title">Moje Nawyki</div>
+            <div class="auth-brand-subtitle">Śledź postęp · Buduj nawyki · Osiągaj cele</div>
+            <h2 id="authTitle">Zaloguj się</h2>
             <div class="auth-form">
                 <input type="email" id="authEmail" placeholder="Email">
-                <input type="password" id="authPassword" placeholder="Hasło">
+                <div class="password-wrapper">
+                    <input type="password" id="authPassword" placeholder="Hasło">
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="passwordToggleBtn"
+                        onclick="window.togglePasswordVisibility()"
+                        title="Pokaż/ukryj hasło"
+                    >👁️</button>
+                </div>
                 <button id="authBtn" onclick="window.handleAuth()">Zaloguj się</button>
                 <div id="errorMessage" class="error-message"></div>
                 <div id="loadingMessage" class="loading"></div>
@@ -590,9 +879,7 @@
                     <p style="color: #94a3b8;">Śledź swój postęp i buduj pozytywne nawyki</p>
                 </div>
                 <div class="user-info">
-                    <div>
-                        <div class="user-email" id="userEmail"></div>
-                    </div>
+                    <div class="user-email" id="userEmail"></div>
                     <button class="logout-btn" onclick="window.handleLogout()">Wyloguj</button>
                 </div>
             </header>
@@ -600,20 +887,102 @@
             <div class="add-habit-section">
                 <div class="form-title">Dodaj nowy nawyk</div>
                 <div class="form-group">
-                    <input 
-                        type="text" 
-                        id="habitInput" 
+                    <input
+                        type="text"
+                        id="habitInput"
                         placeholder="np. Ćwiczenia, Picie wody, Czytanie..."
                     >
-                    <select id="colorSelect">
-                        <option value="blue">Niebieski</option>
-                        <option value="green">Zielony</option>
-                        <option value="purple">Fioletowy</option>
-                        <option value="red">Czerwony</option>
-                        <option value="yellow">Żółty</option>
-                        <option value="pink">Różowy</option>
+                    <div class="color-picker" id="colorPicker">
+                        <label class="color-option" title="Niebieski">
+                            <input type="radio" name="habitColor" value="blue" checked>
+                            <span class="color-swatch" style="background:#3b82f6"></span>
+                        </label>
+                        <label class="color-option" title="Zielony">
+                            <input type="radio" name="habitColor" value="green">
+                            <span class="color-swatch" style="background:#10b981"></span>
+                        </label>
+                        <label class="color-option" title="Fioletowy">
+                            <input type="radio" name="habitColor" value="purple">
+                            <span class="color-swatch" style="background:#a855f7"></span>
+                        </label>
+                        <label class="color-option" title="Czerwony">
+                            <input type="radio" name="habitColor" value="red">
+                            <span class="color-swatch" style="background:#ef4444"></span>
+                        </label>
+                        <label class="color-option" title="Żółty">
+                            <input type="radio" name="habitColor" value="yellow">
+                            <span class="color-swatch" style="background:#eab308"></span>
+                        </label>
+                        <label class="color-option" title="Różowy">
+                            <input type="radio" name="habitColor" value="pink">
+                            <span class="color-swatch" style="background:#ec4899"></span>
+                        </label>
+                    </div>
+                    <select id="frequencySelect" title="Co ile dni">
+                        <option value="1">Codziennie</option>
+                        <option value="2">Co 2 dni</option>
+                        <option value="3">Co 3 dni</option>
+                        <option value="4">Co 4 dni</option>
+                        <option value="5">Co 5 dni</option>
+                        <option value="7">Co tydzień</option>
                     </select>
                     <button onclick="window.addHabit()">➕ Dodaj</button>
+                </div>
+            </div>
+
+            <!-- INFO PANEL -->
+            <div class="info-panel" id="infoPanel">
+                <div class="info-panel-header" onclick="window.toggleInfoPanel()">
+                    <div class="info-panel-header-left">
+                        ℹ️ Jak działają cykle i medale?
+                    </div>
+                    <span class="info-panel-arrow">▼</span>
+                </div>
+                <div class="info-panel-body">
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <div class="info-card-title">📆 Cykl nawyku</div>
+                            <ul>
+                                <li>📅 Każdy cykl trwa <strong>84 dni</strong> (12 tygodni)</li>
+                                <li>🔢 Składa się z <strong>3 etapów</strong> po 4 tygodnie</li>
+                                <li>🔄 Po 84 dniach nowy cykl startuje automatycznie</li>
+                                <li>📊 Każdy etap ma własny pasek postępu</li>
+                            </ul>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-title">⚙️ Częstotliwość</div>
+                            <ul>
+                                <li>📌 Ustaw co ile dni chcesz wykonywać nawyk</li>
+                                <li>✅ Tylko <strong>zaplanowane dni</strong> są aktywne</li>
+                                <li>⬛ Pozostałe dni są wyszarzone i zablokowane</li>
+                                <li>📈 Statystyki liczą tylko zaplanowane dni</li>
+                            </ul>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-title">🔥 Statystyki</div>
+                            <ul>
+                                <li>🔥 <strong>Seria</strong> — ile zaplanowanych dni z rzędu</li>
+                                <li>🏆 <strong>Rekord</strong> — najdłuższa seria ever</li>
+                                <li>📈 <strong>Realizacja</strong> — % wykonanych / zaplanowanych</li>
+                                <li>✅ <strong>Wykonano</strong> — łączna liczba zaznaczonych dni</li>
+                            </ul>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-title">🏅 Jak zdobyć medal?</div>
+                            <ul>
+                                <li>💯 Ukończ cały cykl (84 dni) w <strong>100%</strong></li>
+                                <li>📅 Zaznacz <strong>każdy</strong> zaplanowany dzień</li>
+                                <li>🏆 Medal pojawi się automatycznie po zakończeniu</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-card-title" style="margin-bottom:10px">🏅 Rodzaje medali</div>
+                    <div class="info-medals-row">
+                        <div class="info-medal-item">🥉 <span>Cykl 1 — Brąz</span></div>
+                        <div class="info-medal-item">🥈 <span>Cykl 2 — Srebro</span></div>
+                        <div class="info-medal-item">🥇 <span>Cykl 3 — Złoto</span></div>
+                        <div class="info-medal-item">🏆 <span>Cykl 4+ — Trofeum</span></div>
+                    </div>
                 </div>
             </div>
 
@@ -625,27 +994,24 @@
         </div>
     </div>
 
-    <!-- Firebase SDK with ES Modules -->
     <script type="module">
-        // Import Firebase functions
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-        import { 
-            getAuth, 
-            createUserWithEmailAndPassword, 
-            signInWithEmailAndPassword, 
-            signOut, 
-            onAuthStateChanged 
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged
         } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
-        import { 
-            getFirestore, 
-            collection, 
-            doc, 
-            onSnapshot, 
-            setDoc, 
-            deleteDoc 
+        import {
+            getFirestore,
+            collection,
+            doc,
+            onSnapshot,
+            setDoc,
+            deleteDoc
         } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
 
-        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBxivgHEqijLZMlDCOaYCNIHDGp0ByhJX8",
             authDomain: "habit-tracker-f36cb.firebaseapp.com",
@@ -656,13 +1022,12 @@
             measurementId: "G-ZPVCHRS1LL"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
         // ============================================
-        // AUTH VARIABLES
+        // STATE
         // ============================================
         let isLoginMode = true;
         let currentUser = null;
@@ -679,15 +1044,27 @@
             const toggleText = document.getElementById('authToggleText');
 
             if (isLoginMode) {
-                title.textContent = '📊 Zaloguj się';
+                title.textContent = 'Zaloguj się';
                 btn.textContent = 'Zaloguj się';
                 toggleText.textContent = 'Nie masz konta? ';
             } else {
-                title.textContent = '📊 Zarejestruj się';
+                title.textContent = 'Zarejestruj się';
                 btn.textContent = 'Zarejestruj się';
                 toggleText.textContent = 'Masz już konto? ';
             }
             clearErrors();
+        };
+
+        window.togglePasswordVisibility = function() {
+            const input = document.getElementById('authPassword');
+            const btn = document.getElementById('passwordToggleBtn');
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                btn.textContent = '👁️';
+            }
         };
 
         window.handleAuth = async function() {
@@ -719,7 +1096,8 @@
                 'auth/weak-password': 'Hasło musi mieć co najmniej 6 znaków',
                 'auth/user-not-found': 'Nie znaleziono użytkownika',
                 'auth/wrong-password': 'Błędne hasło',
-                'auth/invalid-email': 'Nieprawidłowy email'
+                'auth/invalid-email': 'Nieprawidłowy email',
+                'auth/invalid-credential': 'Błędny email lub hasło'
             };
             return errors[code] || 'Błąd: ' + code;
         }
@@ -752,15 +1130,12 @@
                 document.getElementById('authSection').style.display = 'none';
                 document.getElementById('appSection').classList.add('active');
                 document.getElementById('userEmail').textContent = user.email;
-
-                // Załaduj nawyki z Firestore
                 loadHabitsFromFirestore();
             } else {
                 currentUser = null;
                 document.getElementById('authSection').style.display = 'block';
                 document.getElementById('appSection').classList.remove('active');
                 habits = [];
-
                 if (unsubscribe) unsubscribe();
             }
         });
@@ -770,16 +1145,12 @@
         // ============================================
         function loadHabitsFromFirestore() {
             if (!currentUser) return;
-
             unsubscribe = onSnapshot(
                 collection(db, 'users', currentUser.uid, 'habits'),
                 snapshot => {
                     habits = [];
                     snapshot.forEach(docSnap => {
-                        habits.push({
-                            id: docSnap.id,
-                            ...docSnap.data()
-                        });
+                        habits.push({ id: docSnap.id, ...docSnap.data() });
                     });
                     renderHabits();
                 }
@@ -788,7 +1159,6 @@
 
         function saveHabitToFirestore(habit) {
             if (!currentUser) return;
-
             setDoc(
                 doc(db, 'users', currentUser.uid, 'habits', habit.id.toString()),
                 habit,
@@ -798,10 +1168,7 @@
 
         function deleteHabitFromFirestore(habitId) {
             if (!currentUser) return;
-
-            deleteDoc(
-                doc(db, 'users', currentUser.uid, 'habits', habitId.toString())
-            );
+            deleteDoc(doc(db, 'users', currentUser.uid, 'habits', habitId.toString()));
         }
 
         // ============================================
@@ -809,7 +1176,9 @@
         // ============================================
         window.addHabit = function() {
             const input = document.getElementById('habitInput');
-            const color = document.getElementById('colorSelect').value;
+            const colorRadio = document.querySelector('input[name="habitColor"]:checked');
+            const color = colorRadio ? colorRadio.value : 'blue';
+            const frequency = parseInt(document.getElementById('frequencySelect').value) || 1;
             const name = input.value.trim();
 
             if (!name) return;
@@ -818,6 +1187,7 @@
                 id: Date.now(),
                 name: name,
                 color: color,
+                frequency: frequency,
                 completedDates: [],
                 createdAt: new Date().toISOString()
             };
@@ -830,7 +1200,6 @@
 
         window.deleteHabit = function(habitId) {
             if (!confirm('Czy na pewno chcesz usunąć ten nawyk?')) return;
-
             habits = habits.filter(h => h.id !== habitId);
             deleteHabitFromFirestore(habitId);
             renderHabits();
@@ -839,6 +1208,8 @@
         window.toggleDay = function(habitId, dateStr) {
             const habit = habits.find(h => h.id === habitId);
             if (!habit) return;
+            if (dateStr < localDateStr(new Date())) return;
+            if (!isScheduledDay(dateStr, habit)) return;
 
             const index = habit.completedDates.indexOf(dateStr);
             if (index > -1) {
@@ -855,6 +1226,92 @@
             element.classList.toggle('collapsed');
         };
 
+        window.toggleInfoPanel = function() {
+            document.getElementById('infoPanel').classList.toggle('open');
+        };
+
+        // ============================================
+        // CYCLE HELPERS
+        // ============================================
+        function getCurrentCycleIndex(habit) {
+            const start = new Date(habit.createdAt);
+            start.setHours(0, 0, 0, 0);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const daysSince = Math.floor((today - start) / 86400000);
+            return Math.floor(daysSince / 84);
+        }
+
+        function getCycleDays(habit, cycleIndex) {
+            const start = new Date(habit.createdAt);
+            start.setHours(0, 0, 0, 0);
+            const cycleStart = new Date(start);
+            cycleStart.setDate(start.getDate() + cycleIndex * 84);
+            const days = [];
+            for (let i = 0; i < 84; i++) {
+                const date = new Date(cycleStart);
+                date.setDate(cycleStart.getDate() + i);
+                days.push(localDateStr(date));
+            }
+            return days;
+        }
+
+        function getEarnedMedals(habit) {
+            const medals = [];
+            const currentCycle = getCurrentCycleIndex(habit);
+            for (let c = 0; c < currentCycle; c++) {
+                const cycleDays = getCycleDays(habit, c);
+                const scheduled = cycleDays.filter(d => isScheduledDay(d, habit));
+                if (scheduled.length > 0 && scheduled.every(d => habit.completedDates.includes(d))) {
+                    medals.push(c + 1); // 1-indexed
+                }
+            }
+            return medals;
+        }
+
+        function getMedalIcon(cycleNumber) {
+            if (cycleNumber === 1) return '🥉';
+            if (cycleNumber === 2) return '🥈';
+            if (cycleNumber === 3) return '🥇';
+            return '🏆';
+        }
+
+        // ============================================
+        // SCHEDULED DAY HELPER
+        // ============================================
+        function isScheduledDay(dateStr, habit) {
+            const freq = habit.frequency || 1;
+            if (freq === 1) return true;
+            const start = new Date(habit.createdAt);
+            start.setHours(0, 0, 0, 0);
+            const day = new Date(dateStr + 'T12:00:00');
+            const diffDays = Math.round((day - start) / 86400000);
+            return diffDays % freq === 0;
+        }
+
+        function getScheduledDaysUpToToday(habit) {
+            const freq = habit.frequency || 1;
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const start = new Date(habit.createdAt);
+            start.setHours(0, 0, 0, 0);
+            const days = [];
+            for (let d = new Date(start); d <= today; d.setDate(d.getDate() + freq)) {
+                days.push(localDateStr(new Date(d)));
+            }
+            return days;
+        }
+
+        // ============================================
+        // DATE HELPER — local timezone YYYY-MM-DD
+        // ============================================
+        function localDateStr(date) {
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        }
+
         // ============================================
         // STATISTICS FUNCTIONS
         // ============================================
@@ -862,57 +1319,64 @@
             const habit = habits.find(h => h.id === habitId);
             if (!habit || habit.completedDates.length === 0) return 0;
 
-            const sorted = [...habit.completedDates].sort().reverse();
+            const scheduled = getScheduledDaysUpToToday(habit);
             let streak = 0;
-            let current = new Date();
-            current.setHours(0, 0, 0, 0);
-
-            for (let i = 0; i < 365; i++) {
-                const dateStr = current.toISOString().split('T')[0];
-                if (sorted.includes(dateStr)) {
+            for (let i = scheduled.length - 1; i >= 0; i--) {
+                if (habit.completedDates.includes(scheduled[i])) {
                     streak++;
-                    current.setDate(current.getDate() - 1);
-                } else if (i === 0) {
-                    break;
                 } else {
                     break;
                 }
             }
-
             return streak;
+        }
+
+        function getBestStreak(habitId) {
+            const habit = habits.find(h => h.id === habitId);
+            if (!habit || habit.completedDates.length === 0) return 0;
+
+            const scheduled = getScheduledDaysUpToToday(habit);
+            let best = 0, current = 0;
+            for (const day of scheduled) {
+                if (habit.completedDates.includes(day)) {
+                    current++;
+                    if (current > best) best = current;
+                } else {
+                    current = 0;
+                }
+            }
+            return best;
         }
 
         function getCompletionRate(habitId) {
             const habit = habits.find(h => h.id === habitId);
             if (!habit) return 0;
 
-            const created = new Date(habit.createdAt);
-            const today = new Date();
-            const daysSince = Math.floor((today - created) / (1000 * 60 * 60 * 24)) + 1;
-
-            return Math.round((habit.completedDates.length / daysSince) * 100);
+            const scheduled = getScheduledDaysUpToToday(habit);
+            if (scheduled.length === 0) return 0;
+            const completed = scheduled.filter(d => habit.completedDates.includes(d)).length;
+            return Math.round((completed / scheduled.length) * 100);
         }
 
         function getStageProgress(habitId, stageDays) {
             const habit = habits.find(h => h.id === habitId);
             if (!habit || !stageDays || stageDays.length === 0) return 0;
-
-            const completedDays = stageDays.filter(day => 
-                habit.completedDates.includes(day)
-            ).length;
-
-            return Math.round((completedDays / stageDays.length) * 100);
+            const scheduled = stageDays.filter(day => isScheduledDay(day, habit));
+            if (scheduled.length === 0) return 0;
+            const completed = scheduled.filter(day => habit.completedDates.includes(day)).length;
+            return Math.round((completed / scheduled.length) * 100);
         }
 
-        function getLast12Weeks() {
-            const weeks = [];
-            for (let i = 83; i >= 0; i--) {
-                const date = new Date();
-                date.setDate(date.getDate() - i);
-                date.setHours(0, 0, 0, 0);
-                weeks.push(date.toISOString().split('T')[0]);
+        function get12WeeksFrom(createdAt) {
+            const days = [];
+            const start = new Date(createdAt);
+            start.setHours(0, 0, 0, 0);
+            for (let i = 0; i < 84; i++) {
+                const date = new Date(start);
+                date.setDate(start.getDate() + i);
+                days.push(localDateStr(date));
             }
-            return weeks;
+            return days;
         }
 
         // ============================================
@@ -920,14 +1384,60 @@
         // ============================================
         function getColorCode(color) {
             const colors = {
-                blue: '#3b82f6',
-                green: '#10b981',
-                purple: '#a855f7',
-                red: '#ef4444',
-                yellow: '#eab308',
-                pink: '#ec4899'
+                blue: '#3b82f6', green: '#10b981', purple: '#a855f7',
+                red: '#ef4444', yellow: '#eab308', pink: '#ec4899'
             };
             return colors[color] || '#3b82f6';
+        }
+
+        // ============================================
+        // CALENDAR RENDERER (with Mon–Sun labels + alignment)
+        // ============================================
+        const WEEK_LABELS = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So', 'Nd'];
+
+        function renderCalendar(habit, days, today) {
+            // Offset so grid starts on Monday
+            const firstDow = (new Date(days[0]).getDay() + 6) % 7; // 0 = Mon
+            const slots = Array(firstDow).fill(null).concat(days);
+
+            return `
+                <div class="calendar-wrapper">
+                    <div class="week-labels">
+                        ${WEEK_LABELS.map(l => `<div class="week-label">${l}</div>`).join('')}
+                    </div>
+                    <div class="calendar">
+                        ${slots.map(dateStr => dateStr === null
+                            ? `<div style="width:32px;height:32px"></div>`
+                            : `<button
+                                class="day-btn ${habit.completedDates.includes(dateStr) ? 'completed ' + habit.color : ''} ${dateStr === today ? 'today' : ''} ${dateStr < today ? 'past' : ''} ${!isScheduledDay(dateStr, habit) ? 'unscheduled' : ''}"
+                                onclick="event.stopPropagation(); window.toggleDay(${habit.id}, '${dateStr}')"
+                                title="${new Date(dateStr + 'T12:00:00').toLocaleDateString('pl-PL')}"
+                               ></button>`
+                        ).join('')}
+                    </div>
+                </div>`;
+        }
+
+        // ============================================
+        // STAGE STATE HELPERS
+        // ============================================
+        function saveStageStates() {
+            const states = {};
+            document.querySelectorAll('.habit-card').forEach(card => {
+                const id = card.dataset.habitId;
+                states[id] = [...card.querySelectorAll('.stage')].map(s => s.classList.contains('collapsed'));
+            });
+            return states;
+        }
+
+        function restoreStageStates(states) {
+            document.querySelectorAll('.habit-card').forEach(card => {
+                const id = card.dataset.habitId;
+                if (!states[id]) return;
+                card.querySelectorAll('.stage').forEach((stage, i) => {
+                    stage.classList.toggle('collapsed', states[id][i] ?? stage.classList.contains('collapsed'));
+                });
+            });
         }
 
         // ============================================
@@ -935,39 +1445,51 @@
         // ============================================
         function renderHabits() {
             const list = document.getElementById('habitsList');
+            const stageStates = saveStageStates();
 
             if (habits.length === 0) {
                 list.innerHTML = '<div class="empty-state">Brak nawyków. Dodaj pierwszy! 🎯</div>';
                 return;
             }
 
-            const allDays = getLast12Weeks();
-            const today = new Date().toISOString().split('T')[0];
+            const today = localDateStr(new Date());
 
-            const stage1 = allDays.slice(0, 28);
-            const stage2 = allDays.slice(28, 56);
-            const stage3 = allDays.slice(56, 84);
+            list.innerHTML = habits.map(habit => {
+                const cycleIndex = getCurrentCycleIndex(habit);
+                const allDays = getCycleDays(habit, cycleIndex);
+                const stage1 = allDays.slice(0, 28);
+                const stage2 = allDays.slice(28, 56);
+                const stage3 = allDays.slice(56, 84);
 
-            list.innerHTML = habits.map(habit => `
-                <div class="habit-card">
+                const colorCode  = getColorCode(habit.color);
+                const streak     = getStreak(habit.id);
+                const bestStreak = getBestStreak(habit.id);
+                const rate       = getCompletionRate(habit.id);
+                const totalDone  = habit.completedDates.length;
+                const freq       = habit.frequency || 1;
+                const freqLabel  = freq === 1 ? 'Codziennie' : freq === 7 ? 'Co tydzień' : `Co ${freq} dni`;
+                const medals     = getEarnedMedals(habit);
+                const cycleNum   = cycleIndex + 1;
+
+                return `
+                <div class="habit-card" data-habit-id="${habit.id}" style="border-left-color: ${colorCode}">
                     <div class="habit-header">
                         <div class="habit-title">
-                            <div class="color-dot" style="background: ${getColorCode(habit.color)}"></div>
+                            <div class="color-dot" style="background: ${colorCode}"></div>
                             ${habit.name}
                         </div>
                         <button class="delete-btn" onclick="window.deleteHabit(${habit.id})">🗑️ Usuń</button>
                     </div>
 
                     <div class="stats">
-                        <div class="stat">
-                            🔥 Seria:
-                            <span class="stat-value stat-streak">${getStreak(habit.id)} dni</span>
-                        </div>
-                        <div class="stat">
-                            📈 Realizacja:
-                            <span class="stat-value stat-rate">${getCompletionRate(habit.id)}%</span>
-                        </div>
+                        <div class="stat-badge">🔁 <span class="stat-value" style="color:#a78bfa">${freqLabel}</span></div>
+                        <div class="stat-badge">🔥 Seria: <span class="stat-value stat-streak">${streak} dni</span></div>
+                        <div class="stat-badge">🏆 Rekord: <span class="stat-value stat-best-streak">${bestStreak} dni</span></div>
+                        <div class="stat-badge">📈 Realizacja: <span class="stat-value stat-rate">${rate}%</span></div>
+                        <div class="stat-badge">✅ Wykonano: <span class="stat-value stat-count">${totalDone} dni</span></div>
                     </div>
+
+                    <div class="cycle-label">📆 Cykl ${cycleNum}</div>
 
                     <div class="stages-container">
                         <div class="stage stage1" onclick="window.toggleStage(this)">
@@ -982,15 +1504,7 @@
                                 </div>
                             </div>
                             <div class="stage-content">
-                                <div class="calendar">
-                                    ${stage1.map(dateStr => `
-                                        <button 
-                                            class="day-btn ${habit.completedDates.includes(dateStr) ? 'completed ' + habit.color : ''} ${dateStr === today ? 'today' : ''}"
-                                            onclick="event.stopPropagation(); window.toggleDay(${habit.id}, '${dateStr}')"
-                                            title="${new Date(dateStr).toLocaleDateString('pl-PL')}"
-                                        ></button>
-                                    `).join('')}
-                                </div>
+                                ${renderCalendar(habit, stage1, today)}
                             </div>
                         </div>
 
@@ -1006,15 +1520,7 @@
                                 </div>
                             </div>
                             <div class="stage-content">
-                                <div class="calendar">
-                                    ${stage2.map(dateStr => `
-                                        <button 
-                                            class="day-btn ${habit.completedDates.includes(dateStr) ? 'completed ' + habit.color : ''} ${dateStr === today ? 'today' : ''}"
-                                            onclick="event.stopPropagation(); window.toggleDay(${habit.id}, '${dateStr}')"
-                                            title="${new Date(dateStr).toLocaleDateString('pl-PL')}"
-                                        ></button>
-                                    `).join('')}
-                                </div>
+                                ${renderCalendar(habit, stage2, today)}
                             </div>
                         </div>
 
@@ -1030,15 +1536,7 @@
                                 </div>
                             </div>
                             <div class="stage-content">
-                                <div class="calendar">
-                                    ${stage3.map(dateStr => `
-                                        <button 
-                                            class="day-btn ${habit.completedDates.includes(dateStr) ? 'completed ' + habit.color : ''} ${dateStr === today ? 'today' : ''}"
-                                            onclick="event.stopPropagation(); window.toggleDay(${habit.id}, '${dateStr}')"
-                                            title="${new Date(dateStr).toLocaleDateString('pl-PL')}"
-                                        ></button>
-                                    `).join('')}
-                                </div>
+                                ${renderCalendar(habit, stage3, today)}
                             </div>
                         </div>
                     </div>
@@ -1046,23 +1544,36 @@
                     <div class="habit-date">
                         Stworzono: ${new Date(habit.createdAt).toLocaleDateString('pl-PL')}
                     </div>
-                </div>
-            `).join('');
+
+                    ${medals.length > 0 ? `
+                    <div class="medals-section">
+                        <div class="medals-title">Zdobyte medale</div>
+                        <div class="medals-row">
+                            ${medals.map(c => `
+                                <div class="medal" title="Cykl ${c} ukończony w 100%!">
+                                    <span class="medal-icon">${getMedalIcon(c)}</span>
+                                    Cykl ${c}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>` : ''}
+                </div>`;
+            }).join('');
+
+            restoreStageStates(stageStates);
         }
 
         // ============================================
-        // Event Listeners
+        // EVENT LISTENERS
         // ============================================
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('habitInput').addEventListener('keypress', (e) => {
+            document.getElementById('habitInput').addEventListener('keypress', e => {
                 if (e.key === 'Enter') window.addHabit();
             });
-
-            document.getElementById('authEmail').addEventListener('keypress', (e) => {
+            document.getElementById('authEmail').addEventListener('keypress', e => {
                 if (e.key === 'Enter') window.handleAuth();
             });
-
-            document.getElementById('authPassword').addEventListener('keypress', (e) => {
+            document.getElementById('authPassword').addEventListener('keypress', e => {
                 if (e.key === 'Enter') window.handleAuth();
             });
         });
