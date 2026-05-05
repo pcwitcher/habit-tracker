@@ -1,3 +1,0 @@
- 1.przesuń kratki na środek , bo widok podświetlonej najeżdża na ramkę, 
-2. nie można zaznaczyć oraz nie podswietla sie ramka dzisiejsza jak wybiorę nawyk co da, trzy cztery it dnie, działa tylko na codziennym nawyku
-3. ikona oka jest naśrodku w widoku mobilnym i przeszkadza w wpisaniu hasła, przesunąc na prawo jak w standartowych widokach.
