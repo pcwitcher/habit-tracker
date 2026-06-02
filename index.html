@@ -1489,6 +1489,11 @@
                 const medals     = getEarnedMedals(habit);
                 const cycleNum   = cycleIndex + 1;
 
+                const todayIdx = allDays.indexOf(today);
+                let activeStageIndex = 0;
+                if (todayIdx >= 56) activeStageIndex = 2;
+                else if (todayIdx >= 28) activeStageIndex = 1;
+
                 return `
                 <div class="habit-card" data-habit-id="${habit.id}" style="border-left-color: ${colorCode}">
                     <div class="habit-header">
@@ -1510,7 +1515,7 @@
                     <div class="cycle-label">📆 Cykl ${cycleNum}</div>
 
                     <div class="stages-container">
-                        <div class="stage stage1" onclick="window.toggleStage(this)">
+                        <div class="stage stage1${activeStageIndex !== 0 ? ' collapsed' : ''}" onclick="window.toggleStage(this)">
                             <div class="stage-header">
                                 <span class="stage-toggle">▼</span>
                                 <div class="stage-header-content">
@@ -1526,7 +1531,7 @@
                             </div>
                         </div>
 
-                        <div class="stage stage2 collapsed" onclick="window.toggleStage(this)">
+                        <div class="stage stage2${activeStageIndex !== 1 ? ' collapsed' : ''}" onclick="window.toggleStage(this)">
                             <div class="stage-header">
                                 <span class="stage-toggle">▼</span>
                                 <div class="stage-header-content">
@@ -1542,7 +1547,7 @@
                             </div>
                         </div>
 
-                        <div class="stage stage3 collapsed" onclick="window.toggleStage(this)">
+                        <div class="stage stage3${activeStageIndex !== 2 ? ' collapsed' : ''}" onclick="window.toggleStage(this)">
                             <div class="stage-header">
                                 <span class="stage-toggle">▼</span>
                                 <div class="stage-header-content">
